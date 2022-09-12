@@ -30,6 +30,14 @@ code {
   --primary: #fff;
   --secondary: #907ff4;
   --secondary-light: #d1cbf0;
+
+  --error-main: #ff7979;
+  --error-dark: #c22b2b;
+  --error-light: #eec4c4;
+
+  --success: #8fd14d;
+  --success-darker: #5c9226;
+  --success-lighter: #c2e69e;
 }
 
 ::selection {
