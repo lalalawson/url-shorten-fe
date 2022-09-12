@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import "./UrlInput.css";
 
 function UrlInput() {
-  const [longUrl, setLongUrl] = useState(null);
+  const [longUrl, setLongUrl] = useState("");
 
   return (
     <div>
       <form>
-        <div className="col" style={{ padding: "36px", gap: "8px" }}>
+        <div className="col" style={{ padding: "24px", gap: "8px" }}>
           <label htmlFor="url">Shorten your URL:</label>
-          <div className="row">
+          <div className="row" style={{ gap: "8px" }}>
             <input
               id="url"
               type="text"
