@@ -7,11 +7,30 @@ body {
     "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #212121;
-  color: #fff;
+  background-color: var(--base);
+  color: var(--primary);
+}
+
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+:root {
+  --base: #212121;
+  --primary: #fff;
+  --secondary: #907ff4;
+  --secondary-light: #d1cbf0;
+}
+
+::selection {
+  background: var(--secondary-light);
+  color: var(--base);
 }

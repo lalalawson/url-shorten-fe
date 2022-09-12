@@ -6,7 +6,7 @@
   margin: auto;
 }
 
-.App-header {
+.App-body {
   height: 50vh;
   display: flex;
   flex-direction: column;
@@ -16,4 +16,13 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.row {
+  display: flex;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
 }
