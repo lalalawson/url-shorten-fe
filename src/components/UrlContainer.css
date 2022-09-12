@@ -1,0 +1,26 @@
+.card {
+  background-color: var(--primary);
+  display: flex;
+  flex-direction: column;
+  margin-top: 36px;
+  border-radius: 8px;
+  color: var(--base);
+  padding: 24px;
+  gap: 10px;
+  box-shadow: 0px 0px 5px 0px lightgray;
+  border: 3px solid var(--secondary);
+}
+
+.card.error {
+  border: 3px solid var(--error-main);
+}
+
+.result-text {
+  color: var(--secondary);
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.result-text.errortext {
+  color: var(--error-main);
+}

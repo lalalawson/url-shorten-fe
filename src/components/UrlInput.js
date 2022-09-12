@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import LoadingSpinner from "./LoadingSpinner/LoadingSpinner";
+import UrlContainer from "./UrlContainer";
 import "./UrlInput.css";
 
 function UrlInput() {
@@ -7,10 +8,13 @@ function UrlInput() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isCompleted, setIsCompleted] = useState(false);
   const [shortUrl, setShortUrl] = useState("");
 
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    // reset
+    setIsCompleted(false);
 
     // check if field is empty
     if (longUrl == "") {
@@ -24,13 +28,19 @@ function UrlInput() {
       setError(false);
       setErrorMessage("");
       setIsLoading(true);
+
+      // placeholder for api
+      await timeout(1000);
+      setIsLoading(false);
+      setIsCompleted(true);
+      setShortUrl("https://haha.com");
     } else {
       setError(true);
       setErrorMessage(
         "Please make sure your URL is valid! Urls should start with http:// or https://"
       );
     }
-  }
+  };
 
   // check if URL is valid before posting
   function isValidUrl(url) {
@@ -48,6 +58,11 @@ function UrlInput() {
       setErrorMessage("");
     }
     setLongUrl(e.target.value);
+  }
+
+  // temp
+  function timeout(delay) {
+    return new Promise((res) => setTimeout(res, delay));
   }
 
   return (
@@ -77,6 +92,7 @@ function UrlInput() {
               <LoadingSpinner />
             </div>
           )}
+          {isCompleted && <UrlContainer url={shortUrl} />}
         </div>
       </form>
     </div>
