@@ -1,3 +1,11 @@
+/* wrap max width to cater for UltraWide */
+.App {
+  display: flex;
+  max-width: 1920px;
+  flex-direction: column;
+  margin: auto;
+}
+
 .App-header {
   height: 50vh;
   display: flex;
@@ -8,70 +16,4 @@
 
 .App-link {
   color: #61dafb;
-}
-
-.header-text {
-  font-size: calc(10px + 8vmin);
-  font-weight: bold;
-}
-
-.subheader-text {
-  font-size: calc(10px + 4vmin);
-  font-weight: bold;
-  width: fit-content;
-}
-
-/* animation to strikethrough long text */
-@keyframes strike {
-  0% {
-    width: 0;
-    opacity: 1;
-  }
-  100% {
-    width: 100%;
-    opacity: 1;
-  }
-}
-.strike {
-  position: relative;
-}
-.strike::after {
-  content: " ";
-  opacity: 0;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  background: pink;
-  animation-name: strike;
-  animation-duration: 1s;
-  animation-delay: 2s;
-  animation-timing-function: linear;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-}
-
-/* animation to write new short text */
-.textwrite {
-  opacity: 0;
-  overflow: hidden;
-  width: 100%;
-  animation-name: writing;
-  animation-duration: 2s;
-  animation-delay: 4s;
-  animation-timing-function: linear;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-}
-
-@keyframes writing {
-  from {
-    width: 0%;
-    opacity: 1;
-  }
-  100% {
-    width: 100%;
-    opacity: 1;
-  }
 }
