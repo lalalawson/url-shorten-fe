@@ -1,7 +1,9 @@
+import axios from "axios";
 import { useState } from "react";
 import LoadingSpinner from "./LoadingSpinner/LoadingSpinner";
 import UrlContainer from "./UrlContainer";
 import "./UrlInput.css";
+import { API_URL } from "../constants/global";
 
 function UrlInput() {
   const [longUrl, setLongUrl] = useState("");
@@ -17,7 +19,7 @@ function UrlInput() {
     setIsCompleted(false);
 
     // check if field is empty
-    if (longUrl == "") {
+    if (longUrl === "") {
       setError(true);
       setErrorMessage("Please fill in your URL first!");
       return;
@@ -29,11 +31,29 @@ function UrlInput() {
       setErrorMessage("");
       setIsLoading(true);
 
-      // placeholder for api
-      await timeout(1000);
-      setIsLoading(false);
-      setIsCompleted(true);
-      setShortUrl("https://haha.com");
+      await axios
+        .post(`${API_URL}/shorten`, { longUrl: longUrl })
+        .then((res) => {
+          setIsLoading(false);
+          setIsCompleted(true);
+          var currentHost = window.location.origin;
+          console.log(currentHost);
+          setShortUrl(currentHost + "/" + res.data.shortUrl);
+        })
+        .catch(function (error) {
+          if (error.response) {
+            console.log(error.response.data);
+            setError(true);
+            setErrorMessage(error.response.data);
+          } else if (error.request) {
+            // The request was made but no response was received
+            console.log(error.request);
+            setError(true);
+            setErrorMessage(error.request.data);
+          }
+          setIsLoading(false);
+          setIsCompleted(true);
+        });
     } else {
       setError(true);
       setErrorMessage(
@@ -53,16 +73,11 @@ function UrlInput() {
 
   // remove errors if user deletes everything
   function handleChange(e) {
-    if (e.target.value == null || e.target.value == "") {
+    if (e.target.value === null || e.target.value === "") {
       setError(false);
       setErrorMessage("");
     }
     setLongUrl(e.target.value);
-  }
-
-  // temp
-  function timeout(delay) {
-    return new Promise((res) => setTimeout(res, delay));
   }
 
   return (
