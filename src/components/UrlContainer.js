@@ -13,7 +13,7 @@ function UrlContainer(props) {
   return (
     <>
       {/* if response was successful */}
-      {props.url != "" && (
+      {props.url !== "" && (
         <div className="card">
           <span className="result-text">Success!</span>
           <span>
@@ -29,7 +29,7 @@ function UrlContainer(props) {
         </div>
       )}
       {/* if response failed */}
-      {props.url == "" && (
+      {props.url === "" && (
         <div className="card error">
           <span className="result-text errortext">Oh no!</span>
           <span>
