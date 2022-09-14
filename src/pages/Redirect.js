@@ -17,8 +17,8 @@ function Redirect() {
     axios
       .get(`${API_URL}/redirect/${shortId}`)
       .then((res) => {
-        setIsLoading(false);
         window.location.replace(res.data);
+        setIsLoading(false);
       })
       .catch(function (error) {
         if (error.response) {
